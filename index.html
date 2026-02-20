@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klinik Dora - Farmasi</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Aplikasi Klinik Dora - Farmasi</h1>
+      <p>Manajemen pembelian, stok, laporan, dan retur obat.</p>
+    </header>
+
+    <nav class="menu" id="menu"></nav>
+
+    <main>
+      <section class="card module" id="master-supplier">
+        <h2>4. Master Supplier</h2>
+        <form id="supplier-form" class="grid-form">
+          <input name="name" placeholder="Nama supplier" required />
+          <input name="phone" placeholder="No. telepon" required />
+          <input name="address" placeholder="Alamat" required />
+          <button type="submit">Tambah Supplier</button>
+        </form>
+        <table>
+          <thead>
+            <tr><th>Nama</th><th>Telepon</th><th>Alamat</th></tr>
+          </thead>
+          <tbody id="supplier-table"></tbody>
+        </table>
+      </section>
+
+      <section class="card module" id="pembelian-obat">
+        <h2>1. Pembelian Obat ke Supplier</h2>
+        <form id="purchase-form" class="grid-form">
+          <input type="date" name="date" required />
+          <select name="supplierId" required></select>
+          <input name="item" placeholder="Nama obat" required />
+          <input type="number" min="1" name="qty" placeholder="Qty" required />
+          <input type="number" min="1" name="price" placeholder="Harga beli / item" required />
+          <button type="submit">Simpan Pembelian</button>
+        </form>
+        <table>
+          <thead>
+            <tr><th>Tanggal</th><th>Supplier</th><th>Obat</th><th>Qty</th><th>Harga</th><th>Total</th></tr>
+          </thead>
+          <tbody id="purchase-table"></tbody>
+        </table>
+      </section>
+
+      <section class="card module" id="stok-opname">
+        <h2>2. Stok Opname Obat</h2>
+        <form id="opname-form" class="grid-form">
+          <input type="date" name="date" required />
+          <input name="item" placeholder="Nama obat" required />
+          <input type="number" min="0" name="actualQty" placeholder="Stok fisik" required />
+          <textarea name="note" placeholder="Catatan opname"></textarea>
+          <button type="submit">Simpan Opname</button>
+        </form>
+        <table>
+          <thead>
+            <tr><th>Tanggal</th><th>Obat</th><th>Sistem</th><th>Fisik</th><th>Selisih</th><th>Catatan</th></tr>
+          </thead>
+          <tbody id="opname-table"></tbody>
+        </table>
+      </section>
+
+      <section class="card module" id="laporan-pembelian">
+        <h2>3. Laporan Pembelian Obat</h2>
+        <div class="filters">
+          <input id="purchase-item-filter" placeholder="Filter item" />
+          <select id="purchase-supplier-filter"></select>
+          <input type="month" id="purchase-period-filter" />
+          <button id="apply-purchase-filter">Terapkan</button>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Tanggal</th><th>Supplier</th><th>Obat</th><th>Qty</th><th>Total</th></tr>
+          </thead>
+          <tbody id="purchase-report-table"></tbody>
+        </table>
+      </section>
+
+      <section class="card module" id="laporan-penjualan">
+        <h2>5. Laporan Penjualan Obat</h2>
+        <form id="sales-form" class="grid-form">
+          <input type="date" name="date" required />
+          <input name="item" placeholder="Nama obat" required />
+          <input type="number" min="1" name="qty" placeholder="Qty jual" required />
+          <input type="number" min="1" name="price" placeholder="Harga jual / item" required />
+          <button type="submit">Simpan Penjualan</button>
+        </form>
+        <div class="filters">
+          <input id="sales-item-filter" placeholder="Filter item" />
+          <input type="month" id="sales-period-filter" />
+          <button id="apply-sales-filter">Terapkan</button>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Tanggal</th><th>Obat</th><th>Qty</th><th>Total</th></tr>
+          </thead>
+          <tbody id="sales-table"></tbody>
+        </table>
+      </section>
+
+      <section class="card module" id="retur-obat">
+        <h2>6. Retur Obat (Supplier & Pasien)</h2>
+        <form id="return-form" class="grid-form">
+          <input type="date" name="date" required />
+          <select name="type" required>
+            <option value="supplier">Ke Supplier</option>
+            <option value="pasien">Dari Pasien</option>
+          </select>
+          <input name="item" placeholder="Nama obat" required />
+          <input type="number" min="1" name="qty" placeholder="Qty retur" required />
+          <input name="party" placeholder="Supplier/Pasien" required />
+          <button type="submit">Simpan Retur</button>
+        </form>
+        <table>
+          <thead>
+            <tr><th>Tanggal</th><th>Tipe</th><th>Obat</th><th>Qty</th><th>Pihak</th></tr>
+          </thead>
+          <tbody id="return-table"></tbody>
+        </table>
+      </section>
+
+      <section class="card module" id="stok-realtime">
+        <h2>7. Data Stok Obat Realtime</h2>
+        <table>
+          <thead>
+            <tr><th>Obat</th><th>Stok Tersedia</th><th>Update</th></tr>
+          </thead>
+          <tbody id="stock-table"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
